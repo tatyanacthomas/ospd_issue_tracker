@@ -1,0 +1,1 @@
+#will contain the attributes and getters for board object
