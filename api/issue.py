@@ -11,7 +11,6 @@ desc
 member(s) - a list of assignees associated with issue
 due_date
 status -  enum(to_do, in_progress, completed)
-list_id  - lookup to related list object
 board_id - lookup to related board object
 
 '''
@@ -56,12 +55,11 @@ class Issue(ABC):
         raise NotImplementedError
 
     @property
-    @abstractmethod
-    def assignee(self) -> str | None:
-        """Return the username or email of the assignee, or None if unassigned."""
+    @abstractmethod 
+    def board_id(self) -> str:
+        """Return the id of the board associated with the issue."""
         raise NotImplementedError
-
-
+        
 class Status(Enum):
     """Status values for an issue."""
 
