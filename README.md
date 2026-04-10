@@ -23,10 +23,42 @@ Unit tests that provide concrete test implementations of the abstract interfaces
 | `api/tests/test_client.py` | Creates a concrete `Client` test class, confirms it can be instantiated, and checks that unimplemented abstract operations raise `NotImplementedError`. |
 
 
-## Running the tests
+## Project setup with uv
+
+### 1. Install uv
+
+`pip install uv`
+
+### 2. Create and sync the environment
 
 From the repository root:
 
 ```bash
-pytest api/tests/
+source .venv/bin/activate && uv sync --extra dev
+```
+
+This reads [pyproject.toml](pyproject.toml), creates a virtual environment, and installs dependencies.
+
+### 3. Run tests
+
+```bash
+uv run pytest
+```
+
+## How other repos can depend on this package
+
+### From GitHub
+
+In another project:
+
+```bash
+uv add "ospd-issue-tracker-api @ git+https://github.com/tatyanacthomas/ospd_issue_tracker.git@main"
+```
+
+### Example import
+
+```python
+from api.client import Client
+from api.issue import Issue, Status
+from api.board import Board
 ```

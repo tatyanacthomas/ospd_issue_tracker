@@ -17,8 +17,8 @@ update_status() - REMOVED - this will be handled by update_issue() method instea
 
 from typing import Iterator
 
-from board import Board
-from issue import Issue, Status
+from .board import Board
+from .issue import Issue, Status
 
 
 class Client(ABC):

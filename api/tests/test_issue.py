@@ -3,9 +3,9 @@ import sys
 
 import pytest
 
-sys.path.append(str(Path(__file__).resolve().parents[1]))
+sys.path.append(str(Path(__file__).resolve().parents[2]))
 
-from issue import Issue, Status
+from api.issue import Issue, Status
 
 
 class ConcreteIssue(Issue):

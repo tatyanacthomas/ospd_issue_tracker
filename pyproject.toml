@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ospd-issue-tracker-api"
+version = "0.1.0"
+description = "Abstract issue-tracker API interfaces for boards, issues, and clients."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "OSPD contributors" }
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2",
+  "pytest-cov>=5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/tatyanacthomas/ospd_issue_tracker"
+Repository = "https://github.com/tatyanacthomas/ospd_issue_tracker"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.2",
+  "pytest-cov>=5.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["api"]
+
+[tool.pytest.ini_options]
+testpaths = ["api/tests"]
