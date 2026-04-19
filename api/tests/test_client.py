@@ -8,6 +8,7 @@ sys.path.append(str(Path(__file__).resolve().parents[2]))
 from api.issue import Issue, Status
 from api.board import Board
 from api.client import Client
+from api.exceptions import BoardError, IssueError
 
 
 class ConcreteClient(Client):
@@ -83,48 +84,48 @@ def test_concrete_client_can_be_instantiated():
 
 
 def test_get_issue_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement get_issue"):
+	with pytest.raises(IssueError, match="Subclasses must implement get_issue"):
 		sample_client.get_issue("issue-1")
 
 def test_get_board_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement get_board"):
+	with pytest.raises(BoardError, match="Subclasses must implement get_board"):
 		sample_client.get_board("board-1")
 
 
 def test_get_issues_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement get_issues"):
+	with pytest.raises(IssueError, match="Subclasses must implement get_issues"):
 		list(sample_client.get_issues("board-1"))
 
 
 def test_get_boards_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement get_boards"):
+	with pytest.raises(BoardError, match="Subclasses must implement get_boards"):
 		list(sample_client.get_boards())
 
 
 def test_update_issue_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement update_issue"):
+	with pytest.raises(IssueError, match="Subclasses must implement update_issue"):
 		sample_client.update_issue("issue-1", title="Updated title")
 
 
 def test_update_board_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement update_board"):
+	with pytest.raises(BoardError, match="Subclasses must implement update_board"):
 		sample_client.update_board("board-1", name="Platform")
 
 
 def test_delete_issue_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement delete_issue"):
+	with pytest.raises(IssueError, match="Subclasses must implement delete_issue"):
 		sample_client.delete_issue("issue-1")
 
 
 def test_delete_board_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement delete_board"):
+	with pytest.raises(BoardError, match="Subclasses must implement delete_board"):
 		sample_client.delete_board("board-1")
 
 
 def test_create_issue_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement create_issue"):
+	with pytest.raises(IssueError, match="Subclasses must implement create_issue"):
 		sample_client.create_issue("New issue", board_id="board-1")
 
 def test_create_board_raises_not_implemented(sample_client):
-	with pytest.raises(NotImplementedError, match="Subclasses must implement create_board"):
+	with pytest.raises(BoardError, match="Subclasses must implement create_board"):
 		sample_client.create_board("Engineering Board")
